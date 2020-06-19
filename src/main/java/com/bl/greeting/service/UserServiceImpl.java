@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -32,5 +31,18 @@ public class UserServiceImpl implements IUserService {
         userUpdates.setPassword(user.getPassword());
         userUpdates.setEmailid(user.getEmailid());
         return userRepository.save(userUpdates);
+    }
+
+    @Override
+    public String deleteUser(int id) {
+        userRepository.deleteById(id);
+        return "User Deleted Succesfull";
+    }
+
+    @Override
+    public User delete(int id) {
+        User userDelete = userRepository.findById(id).get();
+        userRepository.delete(userDelete);
+        return userDelete;
     }
 }
