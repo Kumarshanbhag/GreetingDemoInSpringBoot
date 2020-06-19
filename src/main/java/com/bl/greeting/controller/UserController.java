@@ -8,23 +8,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/greeting")
+@RequestMapping ("/greeting")
 public class UserController {
     @Autowired
     IUserService userService;
 
-    @GetMapping("/welcome")
+    @GetMapping ("/welcome")
     public String welcome() {
         return "Welcome To Greeting Spring Boot";
     }
 
-    @GetMapping("/findalluser")
+    @GetMapping ("/findalluser")
     public List<User> welcomeMessage() {
         return userService.getAllUser();
     }
 
-    @PostMapping("/add")
-    public User addUser(@RequestBody User user){
+    @PostMapping ("/add")
+    public User addUser(@RequestBody User user) {
         return userService.addUser(user);
+    }
+
+    @PutMapping("/update/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+        return userService.updateUser(id, user);
     }
 }
