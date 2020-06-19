@@ -22,4 +22,9 @@ public class UserController {
     public List<User> welcomeMessage() {
         return userService.getAllUser();
     }
+
+    @PostMapping("/add")
+    public User addUser(@RequestBody User user){
+        return userService.addUser(user);
+    }
 }
